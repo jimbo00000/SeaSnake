@@ -4,6 +4,8 @@ using System.Collections;
 public class SimpleKeyb : MonoBehaviour {
 	public float speed = 0.2f;
 	public float rotate_speed = 2.0f;
+	
+	public SteamVR_Camera steamcam;
 
 	// Use this for initialization
 	void Start () {
@@ -35,5 +37,8 @@ public class SimpleKeyb : MonoBehaviour {
 
 		transform.position = curpos;
 		transform.rotation = currot;
+
+		// overwrite for now
+		transform.rotation = steamcam.offset.rotation;
 	}
 }
