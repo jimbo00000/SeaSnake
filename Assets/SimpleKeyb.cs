@@ -4,9 +4,11 @@ using System.Collections;
 public class SimpleKeyb : MonoBehaviour {
 	public float speed = 1.0f;
 	public float rotate_speed = 2.0f;
-	
 	public SteamVR_Camera steamcam;
+	public float velocityDamping = 0.1f;
 
+	Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -32,6 +34,9 @@ public class SimpleKeyb : MonoBehaviour {
 		//transform.rotation = currot;
 		//MoveDirect ();
 		MoveReflect ();
+
+		velocity *= (1.0f - velocityDamping);
+		transform.position += 10.0f * velocity * Time.deltaTime;
 	}
 
 	void MoveDirect () {
@@ -69,7 +74,7 @@ public class SimpleKeyb : MonoBehaviour {
 		// Strike off lateral components of forward motion
 		Vector3 globalForward = new Vector3 (0.0f, 0.0f, -1.0f);
 		backForce = Vector3.Project (backForce, globalForward);
-		transform.position -= 100.0f * frame_speed * backForce;
+		velocity -= 100.0f * frame_speed * backForce;
 
 
 		// debugging
