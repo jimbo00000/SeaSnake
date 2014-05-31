@@ -8,6 +8,7 @@ public class SimpleKeyb : MonoBehaviour {
 	public float velocityDamping = 0.1f;
 
 	Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
+	Vector3 lastHeadPosition = new Vector3(0.0f, 0.0f, 0.0f);
 	
 	// Use this for initialization
 	void Start () {
@@ -57,9 +58,17 @@ public class SimpleKeyb : MonoBehaviour {
 		// (right vector) for a motive force
 		Transform headpose = steamcam.offset;
 
+		
 		Vector3 headVelocity = new Vector3 (0.0f, 0.0f, 0.0f);
-		if (Input.GetKey ("a")) { headVelocity.x = frame_speed; }
-		if (Input.GetKey ("d")) { headVelocity.x = -frame_speed; }
+
+		// Emulation
+		//if (Input.GetKey ("a")) { headVelocity.x = frame_speed; }
+		//if (Input.GetKey ("d")) { headVelocity.x = -frame_speed; }
+
+		// Actual input
+		headVelocity = headpose.localPosition - lastHeadPosition;
+		lastHeadPosition = headpose.localPosition;
+
 
 		Vector3 finNormal = headpose.right; ///@todo handle up, down as well
 		if (Vector3.Dot (finNormal, headVelocity) < 0.0f) {
