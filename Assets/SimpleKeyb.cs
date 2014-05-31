@@ -76,9 +76,15 @@ public class SimpleKeyb : MonoBehaviour {
 		backForce = Vector3.Project (backForce, globalForward);
 		velocity -= 100.0f * frame_speed * backForce;
 
+		// Steer velocity towards head forward direction
+		if (backForce.magnitude < 0.01) {
+				float vnorm = velocity.magnitude;
+				//Vector3.Lerp (velocity, vnorm * headpose.forward, 0.95f);
+				velocity = vnorm * headpose.forward;
+		}
 
 		// debugging
-		Debug.DrawLine(transform.position, transform.position + 10.0f * globalForward, Color.white);
+		Debug.DrawLine(transform.position, transform.position + 10.0f * velocity, Color.white);
 		Debug.DrawLine(transform.position, transform.position + 100.0f * headVelocity, Color.cyan);
 		//Debug.DrawLine(transform.position, transform.position + 10.0f * finNormal, Color.yellow);
 		Debug.DrawLine(transform.position, transform.position + 100.0f * backForce, Color.magenta);
