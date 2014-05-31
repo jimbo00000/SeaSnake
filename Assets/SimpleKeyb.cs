@@ -17,15 +17,14 @@ public class SimpleKeyb : MonoBehaviour {
 		float frame_speed = speed * Time.deltaTime;
 		float frame_rotate_speed = speed * Time.deltaTime;
 
-		Vector3 curpos = transform.position;
 		Quaternion currot = transform.rotation;
 
-		if (Input.GetKey ("w")) { curpos.z += frame_speed; }
-		if (Input.GetKey ("s")) { curpos.z -= frame_speed; }
-		if (Input.GetKey ("a")) { curpos.x -= frame_speed; }
-		if (Input.GetKey ("d")) { curpos.x += frame_speed; }
-		if (Input.GetKey ("q")) { curpos.y += frame_speed; }
-		if (Input.GetKey ("e")) { curpos.y -= frame_speed; }
+        if (Input.GetKey("w")) { transform.position += steamcam.offset.forward * frame_speed; }
+        if (Input.GetKey("s")) { transform.position -= steamcam.offset.forward * frame_speed; }
+        if (Input.GetKey("a")) { transform.position -= steamcam.offset.right * frame_speed; }
+        if (Input.GetKey("d")) { transform.position += steamcam.offset.right * frame_speed;  }
+        if (Input.GetKey("q")) { transform.position += steamcam.offset.up * frame_speed; }
+        if (Input.GetKey("e")) { transform.position -= steamcam.offset.up * frame_speed; }
 
 		// Rotations
 		Quaternion yaw = Quaternion.Euler(0, frame_rotate_speed, 0);
@@ -38,10 +37,8 @@ public class SimpleKeyb : MonoBehaviour {
 		if (Input.GetKey ("i")) { currot *= pitch; }
 		if (Input.GetKey ("k")) { currot *= pitchneg; }
 
-		transform.position = curpos;
+		
 		transform.rotation = currot;
 
-		// overwrite for now
-		//transform.rotation = steamcam.offset.rotation;
 	}
 }
