@@ -4,7 +4,7 @@
 #
 # !!! WARNING !!!
 #
-# … you MUST convert Unity to using Metafiles *before* you start using this .gitignore file,
+# ï¿½ you MUST convert Unity to using Metafiles *before* you start using this .gitignore file,
 # or you WILL lose data!
 #
 # All platforms
@@ -20,3 +20,9 @@ Temp
 desktop.ini
 desktop.ini.meta
 Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll
+Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
+Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll.meta
+Assets/UnityVS.meta
