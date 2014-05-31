@@ -39,6 +39,6 @@ public class SimpleKeyb : MonoBehaviour {
 		transform.rotation = currot;
 
 		// overwrite for now
-		transform.rotation = steamcam.offset.rotation;
+		//transform.rotation = steamcam.offset.rotation;
 	}
 }
