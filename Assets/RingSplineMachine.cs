@@ -26,9 +26,10 @@ public class RingSplineMachine : MonoBehaviour {
                 var direction = nodes[j-1] - nodes[j-2];
                 direction.Normalize();
                 var offset = Random.onUnitSphere * meanDistanceBetweenNode;
+                offset = Vector3.RotateTowards(direction, offset, Mathf.PI/2 , 500) ;
                 //offset.
 
-                //nodes[j] = nodes[j-1] + 
+                nodes[j] = nodes[j - 1] + offset;
                 
             }
             var spline = new GoSpline(nodes);
