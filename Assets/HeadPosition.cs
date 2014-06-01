@@ -32,11 +32,15 @@ public class HeadPosition : MonoBehaviour {
         Vector3 inPlaneRelVel = relativeVelocity - (headDirection * Vector3.Dot(relativeVelocity, headDirection) );
 
 
-        float forceAmount =  (inPlaneRelVel).sqrMagnitude * forceScale;
+		// forward push on the body
+		float forceAmount =  (inPlaneRelVel).sqrMagnitude * forceScale;
         
         var forceVector =  headDirection * forceAmount;
         controller.rigidbody.AddForce(forceVector);
+		Debug.DrawLine(transform.position, transform.position + 0.5f * forceVector, Color.white);
 
+
+		// torques on the body
         var torque = Vector3.Cross(controller.rigidbody.velocity.normalized, inPlaneRelVel) * torqueScale;
         
         var uprightTorque = Vector3.Cross(controller.transform.up, Vector3.up) * buoyancyScale;
