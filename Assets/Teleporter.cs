@@ -18,6 +18,15 @@ public class Teleporter : MonoBehaviour {
             Debug.Log("teleport");
             transform.Rotate(0, 180, 0);
             rigidbody.velocity = -rigidbody.velocity;
+
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.Rotate(0, 180, 0);
+            rigidbody.velocity = -rigidbody.velocity;
+
+        }
+
 	}
 }

@@ -22,7 +22,7 @@ public class RaycastSpawner : MonoBehaviour {
             RaycastHit info;
             if (Physics.Raycast(point, Vector3.down, out info))
             {
-                var thing = Instantiate(things[Random.Range(0, things.Length)], info.point + info.normal * 3, Quaternion.identity) as GameObject;
+                var thing = Instantiate(things[Random.Range(0, things.Length)], info.point , Quaternion.identity) as GameObject;
                 thing.transform.up = info.normal;
                 thing.transform.localScale = Vector3.one * Random.Range(minScaling, maxScaling);
             }
