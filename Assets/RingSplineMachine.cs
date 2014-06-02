@@ -10,9 +10,16 @@ public class RingSplineMachine : MonoBehaviour {
     public Collider spawnVolume;
     public SplineSpawner spawner;
 
+    public bool doit = false;
+
 	// Use this for initialization
 	void Start () {
+        spawn();
+       
+	}
 
+    void spawn()
+    {
         for (int i = 0; i < splines; i++)
         {
             Vector3[] nodes = new Vector3[nodesPerSpline];
@@ -23,19 +30,19 @@ public class RingSplineMachine : MonoBehaviour {
 
             for (int j = 2; j < nodesPerSpline; j++)
             {
-                var direction = nodes[j-1] - nodes[j-2];
+                var direction = nodes[j - 1] - nodes[j - 2];
                 direction.Normalize();
                 var offset = Random.onUnitSphere * meanDistanceBetweenNode;
-                offset = Vector3.RotateTowards(direction, offset, Mathf.PI/2 , 500) ;
+                offset = Vector3.RotateTowards(direction, offset, Mathf.PI / 2, 500);
                 //offset.
 
                 nodes[j] = nodes[j - 1] + offset;
-                
+
             }
             var spline = new GoSpline(nodes);
             spawner.spawnFromSpline(spline);
         }
-	}
+    }
 
     Vector3 getPointInBounds(Bounds b)
     {
@@ -45,6 +52,10 @@ public class RingSplineMachine : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+        if (doit)
+        {
+            doit = false;
+            spawn();
+        }
 	}
 }
